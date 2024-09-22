@@ -1,3 +1,9 @@
+export interface WeatherContextType {
+  weatherData: Root | undefined;
+  selectedDay: number;
+  selectDay: (day: number) => void;
+}
+
 export interface Root {
   cod: string;
   message: number;
@@ -66,3 +72,4 @@ export interface Coord {
   lat: number;
   lon: number;
 }
+

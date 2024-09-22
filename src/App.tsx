@@ -7,7 +7,7 @@ import WeatherDetail from './components/WeatherDetail';
 const App: React.FC = () => {
   return (
     <WeatherProvider>
-      <div className="min-h-screen bg-gray-100 flex flex-col items-center">
+      <div className="min-h-screen bg-gray-200 flex flex-col items-center">
         <Hero />
         <WeatherDays />
         <WeatherDetail />

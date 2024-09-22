@@ -1,4 +1,4 @@
-import { Root, List } from '../types';
+import { Root, List } from '../types/types';
 
 export const useFilteredWeather = (weatherData: Root | undefined): List[] => {
 

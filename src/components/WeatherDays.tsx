@@ -1,6 +1,6 @@
 import React from 'react';
 import { useWeather } from '../context/WeatherContext';
-import { List } from '../types';
+import { List } from '../types/types';
 
 const WeatherDays: React.FC = () => {
   const { weatherData, selectDay } = useWeather();
@@ -14,7 +14,7 @@ const WeatherDays: React.FC = () => {
       {weatherData.list.map((day: List, index: number) => (
         <div
           key={index}
-          className="bg-white p-4 rounded-lg shadow hover:bg-gray-200 hover:shadow-lg hover:scale-105 transform transition-transform duration-300 cursor-pointer text-center"
+          className="bg-white p-4 rounded-lg shadow hover:bg-blue-200 hover:shadow-lg hover:scale-105 transform transition-transform duration-300 cursor-pointer text-center"
           onClick={() => selectDay(index)}
         >
           <p className="font-semibold">{new Date(day.dt_txt).toLocaleDateString()}</p>

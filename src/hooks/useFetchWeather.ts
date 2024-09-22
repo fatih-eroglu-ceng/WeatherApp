@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { Root } from '../types';
+import { Root } from '../types/types';
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 

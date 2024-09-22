@@ -2,18 +2,12 @@ import React, { createContext, useContext } from 'react';
 import { useFetchWeather } from '../hooks/useFetchWeather';
 import { useSelectedDay } from '../hooks/useSelectedDay';
 import { useFilteredWeather } from '../hooks/useFilteredWeather';
-import { Root } from '../types';
-
-interface WeatherContextType {
-  weatherData: Root | undefined;
-  selectedDay: number;
-  selectDay: (day: number) => void;
-}
+import { Root, WeatherContextType } from '../types/types';
 
 const WeatherContext = createContext<WeatherContextType | undefined>(undefined);
 
 export const WeatherProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
-  const { weatherData, error, isLoading } = useFetchWeather("Istanbul");
+  const { weatherData, error, isLoading } = useFetchWeather("Eskişehir");
   const { selectedDay, selectDay } = useSelectedDay();
 
   const filteredWeather = useFilteredWeather(weatherData);
