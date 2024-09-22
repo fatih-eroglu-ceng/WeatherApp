@@ -5,12 +5,11 @@ import { List } from '../types/types';
 const WeatherDays: React.FC = () => {
   const { weatherData, selectDay } = useWeather();
 
-  if (!weatherData || !weatherData.list) {
-    return null;
-  }
-
+  if (!weatherData || !weatherData.list) return null;
+  
   return (
     <div className="w-full mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 px-4 md:px-8">
+      
       {weatherData.list.map((day: List, index: number) => (
         <div
           key={index}
