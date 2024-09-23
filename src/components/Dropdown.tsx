@@ -1,9 +1,9 @@
 import React from 'react';
-import { useCity } from '../hooks/useCity';
-import { cities } from '../data/cities';
+import { useWeather } from '../context/WeatherContext';
+import { cities } from '../consts/cities';
 
 const Dropdown: React.FC = () => {
-  const { setCity } = useCity();
+  const { setCity } = useWeather();
 
   return (
     <ul className="absolute left-0 mt-2 bg-white text-black p-2 rounded shadow-md z-50">

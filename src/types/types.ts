@@ -1,12 +1,3 @@
-export interface WeatherContextType {
-  weatherData: Root | undefined;
-  selectedDay: number;
-  selectDay: (day: number) => void;
-  city: string;
-  setCity: (city: string) => void;
-  isLoading: boolean;
-}
-
 export interface Root {
   cod: string;
   message: number;

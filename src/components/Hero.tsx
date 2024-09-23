@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Dropdown from '../components/Dropdown';
-import { useCity } from '../hooks/useCity';
+import { useWeather } from '../context/WeatherContext';
 
 const Hero: React.FC = () => {
-  const { city } = useCity();
+  const { city } = useWeather();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (

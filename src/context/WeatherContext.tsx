@@ -1,23 +1,29 @@
-import React, { createContext, useState, useContext } from 'react';
-import { useFetchWeather } from '../hooks/useFetchWeather';
-import { useSelectedDay } from '../hooks/useSelectedDay';
-import { useFilteredWeather } from '../hooks/useFilteredWeather';
-import { WeatherContextType } from '../types/types';
+import React, { createContext, useState, useContext, ReactNode } from 'react';
 
+interface WeatherContextType {
+  city: string;
+  setCity: (city: string) => void;
+  selectedDay: number;
+  setSelectedDay: (day: number) => void;
+}
 
-export const WeatherContext = createContext<WeatherContextType | undefined>(undefined);
+const defaultValues: WeatherContextType = {
+  city: 'Eskişehir',
+  setCity: () => null,
+  selectedDay: 0,
+  setSelectedDay: () => null
+}
 
-export const WeatherProvider: React.FC<React.PropsWithChildren<{}>> = ({ children }) => {
-  const [city, setCity] = useState('Eskişehir'); 
-  const { weatherData, error, isLoading } = useFetchWeather(city);
-  const { selectedDay, selectDay } = useSelectedDay();
+export const WeatherContext = createContext(defaultValues);
 
-  const filteredWeather = useFilteredWeather(weatherData);
+export const WeatherProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [city, setCity] = useState(defaultValues.city);
+  const [selectedDay, setSelectedDay] = useState<number>(defaultValues.selectedDay);
 
-  if (error) return <div>Failed to load weather data</div>;
+  const values = { city, setCity, selectedDay, setSelectedDay }
 
   return (
-    <WeatherContext.Provider value={{ weatherData: weatherData ? { ...weatherData, list: filteredWeather } : undefined, selectedDay, selectDay, city, setCity, isLoading }}>
+    <WeatherContext.Provider value={values}>
       {children}
     </WeatherContext.Provider>
   );
@@ -25,7 +31,7 @@ export const WeatherProvider: React.FC<React.PropsWithChildren<{}>> = ({ childre
 
 export const useWeather = () => {
   const context = useContext(WeatherContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useWeather must be used within a WeatherProvider');
   }
   return context;

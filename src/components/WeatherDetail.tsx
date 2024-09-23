@@ -1,14 +1,20 @@
 import React from 'react';
 import { useWeather } from '../context/WeatherContext';
+import { useFetchWeather } from '../hooks/useFetchWeather';
 import { List } from '../types/types';
 import { getBackgroundClass } from '../styles/backgroundStyles';
+import { filterWeatherData } from '../utils/filterWeatherData';
 
 const WeatherDetail: React.FC = () => {
-  const { weatherData, selectedDay } = useWeather();
+  const { city, selectedDay } = useWeather();
+  const { weatherData, error, isLoading } = useFetchWeather(city);
 
-  if (!weatherData || !weatherData.list) return null;
+  if (isLoading) return <div>Loading...</div>;
+  if (error || !weatherData || !weatherData.list) return <div>No data available</div>;
 
-  const dayData: List = weatherData.list[selectedDay];
+  const filteredWeather = filterWeatherData(weatherData.list);
+
+  const dayData: List = filteredWeather[selectedDay];
 
   return (
     <div className={`w-4/5 sm:w-3/5 mt-10 p-5 rounded-lg shadow text-center mb-8 ${getBackgroundClass(dayData.weather[0].main)}`}>
