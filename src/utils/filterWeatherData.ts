@@ -11,6 +11,5 @@ export const filterWeatherData = (list: List[]): List[] => {
       filteredDays.push(item);
     }
   });
-
   return filteredDays;
 };

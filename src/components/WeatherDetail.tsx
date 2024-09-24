@@ -14,8 +14,10 @@ const WeatherDetail: React.FC = () => {
 
   const filteredWeather = filterWeatherData(weatherData.list);
 
-  const dayData: List = filteredWeather[selectedDay];
+  const dayData: List | undefined = filteredWeather.find((day) => day.dt.toString() === selectedDay);
 
+  if (!dayData) return <div>No data available</div>;
+  
   return (
     <div className={`w-4/5 sm:w-3/5 mt-10 p-5 rounded-lg shadow text-center mb-8 ${getBackgroundClass(dayData.weather[0].main)}`}>
       <h2 className="text-2xl font-bold mb-4 text-black">Detailed Weather</h2>
@@ -25,8 +27,8 @@ const WeatherDetail: React.FC = () => {
       <p className="text-black font-semibold">Wind Speed: {dayData.wind.speed} km/h</p>
       <p className="text-black font-semibold">Weather: {dayData.weather[0].description}</p>
     </div>
-
   );
+  
 };
 
 export default WeatherDetail;

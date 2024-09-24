@@ -12,14 +12,15 @@ const WeatherDays: React.FC = () => {
   if (error || !weatherData || !weatherData.list) return <div>No data available</div>;
 
   const filteredWeather = filterWeatherData(weatherData.list);
+  
 
   return (
-    <div className="w-full mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 px-4 md:px-8">
-    {filteredWeather.map((day: List, index: number) => (
+  <div className="w-full mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 px-4 md:px-8">
+    {filteredWeather.map((day: List) => (
       <div
-        key={index}
+        key={day.dt}
         className="bg-white dark:bg-gray-600 p-4 rounded-lg shadow hover:bg-blue-200 dark:hover:bg-blue-600 hover:shadow-lg hover:scale-105 transform transition-transform duration-300 cursor-pointer text-center"
-        onClick={() => setSelectedDay(index)}
+        onClick={() => setSelectedDay(day.dt.toString())}
       >
         <p className="font-semibold dark:text-white">{new Date(day.dt_txt).toLocaleDateString()}</p>
         <img src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`} alt="Weather Icon" className="mx-auto" />
@@ -28,8 +29,8 @@ const WeatherDays: React.FC = () => {
       </div>
     ))}
   </div>
-  
-  );
+);
+
 };
 
 export default WeatherDays;
