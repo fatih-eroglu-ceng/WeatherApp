@@ -25,6 +25,7 @@ const WeatherDetail: React.FC = () => {
       <p className="text-black font-semibold">Wind Speed: {dayData.wind.speed} km/h</p>
       <p className="text-black font-semibold">Weather: {dayData.weather[0].description}</p>
     </div>
+
   );
 };
 

@@ -6,11 +6,11 @@ const Dropdown: React.FC = () => {
   const { setCity } = useWeather();
 
   return (
-    <ul className="absolute left-0 mt-2 bg-white text-black p-2 rounded shadow-md z-50">
+    <ul className="absolute left-0 mt-2 bg-white dark:bg-gray-800 text-black dark:text-white p-2 rounded shadow-md z-50">
       {cities.map((city) => (
         <li
           key={city}
-          className="p-1 hover:bg-blue-200 cursor-pointer rounded"
+          className="p-1 hover:bg-blue-200 dark:hover:bg-blue-600 cursor-pointer rounded"
           onClick={() => setCity(city)}
         >
           {city}
